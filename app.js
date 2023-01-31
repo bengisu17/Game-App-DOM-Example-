@@ -1,9 +1,10 @@
-const randomNumber = Math.floor (Math.random() * 100 ) +1 ;
+let randomNumber = Math.floor (Math.random() * 100 ) +1 ;
 console.log(randomNumber)
 
 
 let score = 10;
-let topScore = 0;
+// let topScore = 0;
+let topScore = localStorage.getItem("topScore");
 
 const msg = document.querySelector(".msg");
 
@@ -39,7 +40,18 @@ document.querySelector(".check-btn").addEventListener("click", () => {
 
 document.querySelector(".again-btn").addEventListener('click', () => {
     score = 10;
-    const randomNumber = Math.floor (Math.random() * 100 ) +1 ;
+    randomNumber = Math.floor (Math.random() * 100 ) +1 ;
+    document.querySelector(".secret-number").textContent = "?";
     console.log(randomNumber)
+    document.querySelector("check-btn").disabled = false;
+    document.querySelector("body").className.remove("green red");
+    document.querySelector(".guess-input").value = "";
+    document.querySelector(".msg").innerText = `Starting..`;
+});
 
-})
+// myObj = { a:1 , b:2 , c:3 };
+
+// localStorage.setItem("OBJ", JSON.stringify(myObj));
+// const readObj = localStorage.getItem("OBJ");
+// const readObJ = JSON.parse(localStorage.getItem("OBJ"));
+// console.log(readObJ);

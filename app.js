@@ -4,7 +4,8 @@ console.log(randomNumber)
 
 let score = 10;
 // let topScore = 0;
-let topScore = localStorage.getItem("topScore");
+let topScore = localStorage.getItem("topScore")||0;
+document.querySelector(".top-score").textContent = topScore;
 
 const msg = document.querySelector(".msg");
 
@@ -19,8 +20,9 @@ document.querySelector(".check-btn").addEventListener("click", () => {
         document.querySelector("body").style.background = "green";
         
         if (score > topScore){
-            topScore = score;
-            document.querySelector(".top-score").textContent = topScore;
+            // topScore = score;
+            localStorage.setItem("topScore", score);
+            document.querySelector(".top-score").textContent = score;
         }
         document.querySelector(".secret-number").textContent = randomNumber;
     } else {
@@ -48,6 +50,15 @@ document.querySelector(".again-btn").addEventListener('click', () => {
     document.querySelector(".guess-input").value = "";
     document.querySelector(".msg").innerText = `Starting..`;
 });
+
+
+document.querySelector(".guess-input").addEventListener("keydown", (e) => {
+    if (e.code === 'Enter'){
+        document.querySelector(".check-btn").click();
+    }
+})
+
+
 
 // myObj = { a:1 , b:2 , c:3 };
 
